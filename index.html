@@ -3,38 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team 4YouXGod</title>
+    <title>REYZ4YOU - CYBER CORE V4</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="config.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        :root { --neon-blue: #00f3ff; --neon-purple: #bc13fe; --dark-bg: #05060f; }
+        :root { --neon-blue: #00f3ff; --neon-purple: #bc13fe; --neon-yellow: #f4ff00; --dark-bg: #05060f; }
         body {
             background-color: var(--dark-bg);
-            background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
             background-size: 30px 30px;
             color: white;
             font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .cyber-border {
             border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), inset 0 0 15px rgba(0, 243, 255, 0.3);
-            background: rgba(10, 11, 30, 0.8);
-            backdrop-filter: blur(10px);
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+            background: rgba(10, 11, 30, 0.9);
+            backdrop-filter: blur(15px);
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
         }
         .neon-text { font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px var(--neon-blue); }
         .neon-btn {
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             transition: 0.3s;
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+            clip-path: polygon(8% 0, 100% 0, 100% 75%, 92% 100%, 0 100%, 0 25%);
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
-        .neon-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-blue); }
+        .neon-btn:hover { transform: translateY(-2px); box-shadow: 0 0 25px var(--neon-blue); opacity: 0.9; }
         .hidden { display: none; }
         .loader {
-            width: 40px; height: 40px;
-            border: 4px solid var(--neon-purple); border-top-color: var(--neon-blue);
+            width: 50px; height: 50px;
+            border: 5px solid rgba(0, 243, 255, 0.1); border-top-color: var(--neon-blue);
             border-radius: 50%; animation: spin 0.8s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -42,46 +48,242 @@
         .scroll-custom::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body class="p-6">
 
     <div class="max-w-md w-full relative">
-        <div class="absolute -top-10 -left-10 w-32 h-32 bg-cyan-500/20 blur-[80px]"></div>
-        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500/20 blur-[80px]"></div>
+        <div class="absolute -top-20 -left-20 w-48 h-48 bg-cyan-500/10 blur-[120px]"></div>
+        <div class="absolute -bottom-20 -right-20 w-48 h-48 bg-purple-500/10 blur-[120px]"></div>
 
-        <div class="text-center mb-8">
-            <h1 class="text-5xl font-black neon-text italic tracking-tighter italic text-cyan-400">REYZ<span class="text-purple-500">4YOU</span></h1>
-            <div class="h-1 w-24 bg-cyan-500 mx-auto mt-2 shadow-[0_0_10px_#00f3ff]"></div>
+        <div class="text-center mb-10">
+            <h1 class="text-5xl font-black neon-text italic text-cyan-400 tracking-tighter">REYZ<span class="text-purple-500">4YOU</span></h1>
+            <p class="text-[9px] tracking-[0.6em] text-gray-500 uppercase mt-2 font-bold animate-pulse">System Overdrive Active</p>
         </div>
 
-        <div id="step1" class="cyber-border p-8 animate-pulse-slow">
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
-                <span class="w-2 h-6 bg-cyan-400"></span> ENTAR YOUR USERNAME
+        <div id="step1" class="cyber-border p-8 transition-all">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                <span class="w-1 h-6 bg-cyan-400"></span>MASUKAN USERNAME ANDA
             </h2>
-            <input type="text" id="userInput" spellcheck="false" class="w-full bg-black/50 border-b-2 border-cyan-500 p-4 mb-8 outline-none focus:bg-cyan-500/10 transition font-mono text-cyan-300 placeholder:text-cyan-900" placeholder="ReyZ4You Pterodactly...">
-            <button onclick="toStep2()" class="w-full neon-btn py-4 font-bold text-lg tracking-widest uppercase">CREATE PANEL</button>
+            <div class="space-y-1 mb-8 text-left">
+                <label class="text-[10px] text-cyan-500 ml-1 font-bold uppercase tracking-widest">Identify UserName</label>
+                <input type="text" id="userInput" spellcheck="false" class="w-full bg-black/60 border border-cyan-500/30 p-4 rounded outline-none transition font-mono text-cyan-300 placeholder:text-cyan-900 focus:border-cyan-400" placeholder="e.g. reyz_admin">
+            </div>
+            <button onclick="toStep2()" class="w-full neon-btn py-4">CREATE PANEL</button>
         </div>
 
-        <div id="step2" class="hidden cyber-border p-6">
-            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-purple-400">
-                <span class="w-2 h-6 bg-purple-500"></span> SELECT_CAPACITY
+        <div id="step2" class="hidden cyber-border p-6 transition-all">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-3 text-purple-400">
+                <span class="w-1 h-6 bg-purple-500"></span> RESOURCE_ALLOC
             </h2>
-            <div id="ramList" class="grid gap-3 h-80 overflow-y-auto pr-2 scroll-custom"></div>
-            <button onclick="backTo(1)" class="w-full mt-4 text-xs text-cyan-700 hover:text-cyan-300 transition uppercase tracking-widest font-bold">Abort Connection</button>
+            <div id="ramList" class="grid gap-3 h-80 overflow-y-auto pr-2 scroll-custom">
+                </div>
+            <button onclick="backTo(1)" class="w-full mt-4 text-[10px] text-gray-600 hover:text-cyan-400 transition font-bold uppercase tracking-widest text-center">← Abort Session</button>
         </div>
 
         <div id="step3" class="hidden cyber-border p-8 text-center">
-            <h2 class="text-xl font-bold mb-6 text-orange-400 italic font-black uppercase">Secure Payment Required</h2>
-            <div class="bg-black/40 p-6 rounded-lg border border-orange-500/30 mb-8">
-                <p class="text-gray-400 text-xs mb-1">CREDITS_OWED:</p>
-                <p class="text-4xl font-bold neon-text text-white">IDR <span id="priceDisplay"></span></p>
+            <h2 class="text-xl font-bold mb-6 text-orange-400 uppercase italic tracking-wider">Pending Transaction</h2>
+            <div class="bg-black/50 p-6 border-y border-orange-500/30 mb-8">
+                <p class="text-[10px] text-gray-500 mb-1 font-bold uppercase">Required_Credits:</p>
+                <p class="text-4xl font-bold neon-text text-white font-mono">IDR <span id="priceDisplay"></span></p>
             </div>
-            <button id="btnPay" class="w-full neon-btn py-5 font-black text-xl mb-8 uppercase tracking-tighter" style="background: linear-gradient(45deg, #ff8c00, #ff0055);">Initialize Transaction</button>
+            <button id="btnPay" class="w-full neon-btn py-5 mb-8 text-white" style="background: linear-gradient(45deg, #ff8c00, #ff0055);">Open QRIS Interface</button>
+            
             <div class="flex flex-col items-center">
                 <div class="loader mb-4"></div>
-                <p class="text-cyan-400 text-xs tracking-widest animate-pulse font-bold uppercase">Scanning Blockchain Status...</p>
+                <p class="text-cyan-400 text-[10px] tracking-widest animate-pulse font-bold uppercase">Scanning Payment Blockchain...</p>
+                <button onclick="checkStatus()" class="mt-6 text-[9px] text-gray-600 border border-gray-800 px-4 py-1 rounded hover:text-cyan-400 transition uppercase font-bold">
+                    [ Manual_Check ]
+                </button>
             </div>
         </div>
 
+        <div id="step4" class="hidden cyber-border p-8">
+            <div class="text-center mb-6">
+                <div class="text-green-400 text-4xl font-black italic neon-text uppercase">Deployed</div>
+                <div class="h-[1px] w-full bg-green-500/30 mt-2"></div>
+            </div>
+
+            <div id="accBox" class="hidden space-y-4">
+                <div class="relative text-left">
+                    <p class="text-[9px] text-cyan-500 font-bold ml-1 mb-1 tracking-[0.2em] uppercase">Control_Hub_URL</p>
+                    <div class="flex bg-black/60 border border-cyan-500/20 p-3 rounded items-center">
+                        <span id="resDomain" class="flex-1 font-mono text-xs text-gray-300 overflow-hidden text-ellipsis whitespace-nowrap"></span>
+                        <button onclick="copy('resDomain')" class="ml-2 text-[10px] bg-cyan-500/10 px-3 py-1 text-cyan-400 border border-cyan-500/30 rounded hover:bg-cyan-500/30 transition uppercase font-bold">Copy</button>
+                    </div>
+                </div>
+
+                <div class="relative text-left">
+                    <p class="text-[9px] text-purple-500 font-bold ml-1 mb-1 tracking-[0.2em] uppercase">Access_Identity</p>
+                    <div class="flex bg-black/60 border border-purple-500/20 p-3 rounded items-center">
+                        <span id="resUser" class="flex-1 font-mono text-lg text-white font-bold"></span>
+                        <button onclick="copy('resUser')" class="ml-2 text-[10px] bg-purple-500/10 px-3 py-1 text-purple-400 border border-purple-500/30 rounded hover:bg-purple-500/30 transition uppercase font-bold">Copy</button>
+                    </div>
+                </div>
+
+                <div class="relative text-left">
+                    <p class="text-[9px] text-yellow-500 font-bold ml-1 mb-1 tracking-[0.2em] uppercase">Security_Key</p>
+                    <div class="flex bg-black/60 border border-yellow-500/20 p-3 rounded items-center">
+                        <span id="resPass" class="flex-1 font-mono text-lg text-white font-bold"></span>
+                        <button onclick="copy('resPass')" class="ml-2 text-[10px] bg-yellow-500/10 px-3 py-1 text-yellow-400 border border-yellow-500/30 rounded hover:bg-yellow-500/30 transition uppercase font-bold">Copy</button>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button id="loginBtn" class="w-full neon-btn py-4 shadow-[0_0_20px_rgba(0,243,255,0.2)]">
+                        Enter Core Mainframe
+                    </button>
+                </div>
+                
+                <p class="text-center text-[9px] text-gray-600 uppercase font-bold tracking-[0.3em] mt-2 animate-pulse">! Auto_Delete: Save Credentials Now !</p>
+            </div>
+            
+            <p id="creatingText" class="text-center text-cyan-400 animate-pulse font-bold italic py-10 tracking-widest uppercase">Provisioning Server Core...</p>
+        </div>
+    </div>
+
+    <script>
+        let order = { username: '', ram: '', disk: 0, cpu: 0, price: 0, orderId: '' };
+        let pollingInterval;
+
+        // FUNGSI PINDAH STEP
+        function switchStep(n) {
+            [1,2,3,4].forEach(i => {
+                const el = document.getElementById('step'+i);
+                if(el) el.classList.add('hidden');
+            });
+            document.getElementById('step'+n).classList.remove('hidden');
+        }
+
+        // ANTI-SLEEP: Deteksi tab dibuka kembali
+        document.addEventListener("visibilitychange", function() {
+            if (document.visibilityState === 'visible' && order.orderId) {
+                console.log("Tab Active: Instant Sync Initiated.");
+                checkStatus(); 
+            }
+        });
+
+        // STEP 1: LOGIN USERNAME
+        function toStep2() {
+            const val = document.getElementById('userInput').value.trim().toLowerCase().replace(/\s/g, '');
+            if(val.length < 3) return alert("ACCESS_DENIED: Invalid ID length.");
+            order.username = val;
+            
+            const list = document.getElementById('ramList');
+            list.innerHTML = '';
+            CONFIG.RAM_OPTIONS.forEach(opt => {
+                list.innerHTML += `
+                    <button onclick="startPay('${opt.name}', ${opt.price}, ${opt.disk}, ${opt.cpu})" class="group flex justify-between items-center p-5 bg-black/40 border border-cyan-500/10 hover:border-cyan-400 transition-all rounded text-left">
+                        <div>
+                            <p class="font-bold text-lg text-white group-hover:text-cyan-400 transition italic">RAM ${opt.name}</p>
+                            <p class="text-[9px] text-gray-600 tracking-tighter uppercase font-bold">CPU:${opt.cpu}% | DISK:${opt.disk}MB</p>
+                        </div>
+                        <span class="font-bold text-cyan-400 font-mono">Rp${opt.price.toLocaleString()}</span>
+                    </button>`;
+            });
+            switchStep(2);
+        }
+
+        // STEP 2: PILIH RAM & MULAI BAYAR
+        function startPay(name, price, disk, cpu) {
+            order.ram = name; order.price = price; order.disk = disk; order.cpu = cpu;
+            order.orderId = "REYZ_PTERODACTLY" + Date.now().toString(36).toUpperCase();
+            
+            document.getElementById('priceDisplay').innerText = price.toLocaleString();
+            
+            const payUrl = `https://app.pakasir.com/pay/${CONFIG.PAKASIR_SLUG}/${price}?order_id=${order.orderId}&qris_only=1`;
+            document.getElementById('btnPay').onclick = () => window.open(payUrl, '_blank');
+            
+            switchStep(3);
+            if(pollingInterval) clearInterval(pollingInterval);
+            pollingInterval = setInterval(checkStatus, 5000); // Cek tiap 5 detik
+        }
+
+        // FUNGSI CEK STATUS (POLLING)
+        async function checkStatus() {
+            if (!order.orderId) return;
+            try {
+                let r = await fetch(`https://app.pakasir.com/api/check-status/${order.orderId}`);
+                let j = await r.json();
+                if(j.paid || j.status === 'success') { 
+                    clearInterval(pollingInterval); 
+                    processAccount(); 
+                }
+            } catch(e) { console.warn("Sync Lost: Retrying connection..."); }
+        }
+
+        // STEP 4: PROSES CREATE PANEL
+        async function processAccount() {
+            switchStep(4);
+            const pass = order.username + "2546";
+            const infoText = document.getElementById('creatingText');
+            
+            try {
+                // 1. Create User
+                let userRes = await fetch(`${CONFIG.PANEL_DOMAIN}/api/application/users`, {
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${CONFIG.PANEL_API_KEY}`, 'Accept': 'application/json' },
+                    body: JSON.stringify({ 
+                        email: `${order.username}@gmail.com`, 
+                        username: order.username, 
+                        first_name: order.username, 
+                        last_name: 'CyberCore', 
+                        language: 'en', 
+                        password: pass 
+                    })
+                });
+                let userData = await userRes.json();
+                if(userData.errors) throw new Error(userData.errors[0].detail);
+
+                // 2. Create Server
+                let serverRes = await fetch(`${CONFIG.PANEL_DOMAIN}/api/application/servers`, {
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${CONFIG.PANEL_API_KEY}`, 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        name: `CYBER_${order.username.toUpperCase()}`, 
+                        user: userData.attributes.id, 
+                        egg: CONFIG.EGG_ID,
+                        docker_image: "ghcr.io/parkervcp/yolks:nodejs_20", 
+                        startup: "npm start",
+                        environment: { INST: "npm", USER_UPLOAD: "0", AUTO_UPDATE: "0", CMD_RUN: "npm start" },
+                        limits: { 
+                            memory: order.ram === 'UNLIMITED' ? 0 : parseInt(order.ram) * 1024, 
+                            swap: 0, disk: order.disk, io: 500, cpu: order.cpu 
+                        },
+                        feature_limits: { databases: 5, backups: 5, allocations: 5 },
+                        deploy: { locations: [CONFIG.LOC_ID], dedicated_ip: false, port_range: [] }
+                    })
+                });
+
+                // Display Credentials
+                document.getElementById('resDomain').innerText = CONFIG.PANEL_DOMAIN;
+                document.getElementById('resUser').innerText = order.username;
+                document.getElementById('resPass').innerText = pass;
+                
+                // Set login button URL
+                document.getElementById('loginBtn').onclick = () => window.open(CONFIG.PANEL_DOMAIN, '_blank');
+
+                infoText.classList.add('hidden');
+                document.getElementById('accBox').classList.remove('hidden');
+                
+            } catch(e) { 
+                infoText.innerHTML = `<span class="text-red-500 uppercase tracking-widest text-xs">Deployment_Failed: ${e.message}</span><br><button onclick="processAccount()" class="mt-4 neon-btn px-6 py-2 text-[10px]">Retry_Core_Sync</button>`; 
+            }
+        }
+
+        // FUNGSI COPY TEKS
+        function copy(id) {
+            const t = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(t);
+            alert("SYSTEM: Data copied to clipboard.");
+        }
+        
+        // FUNGSI BACK
+        function backTo(n) { 
+            if(pollingInterval) clearInterval(pollingInterval);
+            switchStep(n); 
+        }
+    </script>
+</body>
+    </html>
         <div id="step4" class="hidden cyber-border p-8">
             <div class="text-center mb-8">
                 <div class="text-green-400 text-5xl mb-2 font-black italic">SUCCESS</div>
