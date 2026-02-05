@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team 4YouXGod</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --neon-blue: #00f3ff; --neon-purple: #bc13fe; --dark-bg: #05060f; }
+        body {
+            background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+        .cyber-border {
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), inset 0 0 15px rgba(0, 243, 255, 0.3);
+            background: rgba(10, 11, 30, 0.8);
+            backdrop-filter: blur(10px);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);
+        }
+        .neon-text { font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px var(--neon-blue); }
+        .neon-btn {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            transition: 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+        .neon-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--neon-blue); }
+        .hidden { display: none; }
+        .loader {
+            width: 40px; height: 40px;
+            border: 4px solid var(--neon-purple); border-top-color: var(--neon-blue);
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .scroll-custom::-webkit-scrollbar { width: 4px; }
+        .scroll-custom::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="max-w-md w-full relative">
+        <div class="absolute -top-10 -left-10 w-32 h-32 bg-cyan-500/20 blur-[80px]"></div>
+        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500/20 blur-[80px]"></div>
+
+        <div class="text-center mb-8">
+            <h1 class="text-5xl font-black neon-text italic tracking-tighter italic text-cyan-400">REYZ<span class="text-purple-500">4YOU</span></h1>
+            <div class="h-1 w-24 bg-cyan-500 mx-auto mt-2 shadow-[0_0_10px_#00f3ff]"></div>
+        </div>
+
+        <div id="step1" class="cyber-border p-8 animate-pulse-slow">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+                <span class="w-2 h-6 bg-cyan-400"></span> ENTAR YOUR USERNAME
+            </h2>
+            <input type="text" id="userInput" spellcheck="false" class="w-full bg-black/50 border-b-2 border-cyan-500 p-4 mb-8 outline-none focus:bg-cyan-500/10 transition font-mono text-cyan-300 placeholder:text-cyan-900" placeholder="ReyZ4You Pterodactly...">
+            <button onclick="toStep2()" class="w-full neon-btn py-4 font-bold text-lg tracking-widest uppercase">CREATE PANEL</button>
+        </div>
+
+        <div id="step2" class="hidden cyber-border p-6">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-purple-400">
+                <span class="w-2 h-6 bg-purple-500"></span> SELECT_CAPACITY
+            </h2>
+            <div id="ramList" class="grid gap-3 h-80 overflow-y-auto pr-2 scroll-custom"></div>
+            <button onclick="backTo(1)" class="w-full mt-4 text-xs text-cyan-700 hover:text-cyan-300 transition uppercase tracking-widest font-bold">Abort Connection</button>
+        </div>
+
+        <div id="step3" class="hidden cyber-border p-8 text-center">
+            <h2 class="text-xl font-bold mb-6 text-orange-400 italic font-black uppercase">Secure Payment Required</h2>
+            <div class="bg-black/40 p-6 rounded-lg border border-orange-500/30 mb-8">
+                <p class="text-gray-400 text-xs mb-1">CREDITS_OWED:</p>
+                <p class="text-4xl font-bold neon-text text-white">IDR <span id="priceDisplay"></span></p>
+            </div>
+            <button id="btnPay" class="w-full neon-btn py-5 font-black text-xl mb-8 uppercase tracking-tighter" style="background: linear-gradient(45deg, #ff8c00, #ff0055);">Initialize Transaction</button>
+            <div class="flex flex-col items-center">
+                <div class="loader mb-4"></div>
+                <p class="text-cyan-400 text-xs tracking-widest animate-pulse font-bold uppercase">Scanning Blockchain Status...</p>
+            </div>
+        </div>
+
+        <div id="step4" class="hidden cyber-border p-8">
+            <div class="text-center mb-8">
+                <div class="text-green-400 text-5xl mb-2 font-black italic">SUCCESS</div>
+                <div class="h-1 w-full bg-green-500/30"></div>
+            </div>
+
+            <div id="accBox" class="hidden space-y-6">
+                <div class="relative group">
+                    <p class="text-[10px] text-cyan-500 font-bold ml-1 mb-1">ACCESS_KEY (USER)</p>
+                    <div class="flex bg-black/60 border border-cyan-500/50 p-4 rounded items-center">
+                        <span id="resUser" class="flex-1 font-mono text-xl text-white"></span>
+                        <button onclick="copy('resUser')" class="text-cyan-400 hover:text-white transition p-2">COPY</button>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <p class="text-[10px] text-purple-500 font-bold ml-1 mb-1">ENCRYPTED_PASS</p>
+                    <div class="flex bg-black/60 border border-purple-500/50 p-4 rounded items-center">
+                        <span id="resPass" class="flex-1 font-mono text-xl text-white"></span>
+                        <button onclick="copy('resPass')" class="text-purple-400 hover:text-white transition p-2">COPY</button>
+                    </div>
+                </div>
+                <button onclick="window.open(CONFIG.PANEL_DOMAIN)" class="w-full neon-btn py-4 font-bold mt-4 uppercase">Enter Mainframe</button>
+            </div>
+            <p id="creatingText" class="text-center text-cyan-400 animate-pulse font-bold italic">PROVISIONING SERVER...</p>
+        </div>
+    </div>
+
+    <script>
+        let order = { username: '', ram: '', disk: 0, cpu: 0, price: 0, orderId: '' };
+        let timer;
+
+        function switchStep(n) {
+            [1,2,3,4].forEach(i => document.getElementById('step'+i).classList.add('hidden'));
+            document.getElementById('step'+n).classList.remove('hidden');
+        }
+
+        function toStep2() {
+            const val = document.getElementById('userInput').value.trim().toLowerCase();
+            if(val.length < 3) return alert("System rejected: Username too short.");
+            order.username = val;
+            
+            const list = document.getElementById('ramList');
+            list.innerHTML = '';
+            CONFIG.RAM_OPTIONS.forEach(opt => {
+                list.innerHTML += `
+                    <button onclick="startPay('${opt.name}', ${opt.price}, ${opt.disk}, ${opt.cpu})" class="group flex justify-between items-center p-5 bg-cyan-500/5 border border-cyan-500/20 hover:border-cyan-400 transition-all rounded mb-2">
+                        <div class="text-left">
+                            <p class="font-bold text-lg text-white group-hover:text-cyan-400 transition">RAM ${opt.name}</p>
+                            <p class="text-[10px] text-gray-500 tracking-widest uppercase font-bold">C:${opt.cpu}% | D:${opt.disk}MB</p>
+                        </div>
+                        <span class="font-bold text-cyan-400">IDR ${opt.price.toLocaleString()}</span>
+                    </button>`;
+            });
+            switchStep(2);
+        }
+
+        function startPay(name, price, disk, cpu) {
+            order.ram = name; order.price = price; order.disk = disk; order.cpu = cpu;
+            order.orderId = "PANEL-PTERODACKTYL" + Date.now().toString(36).toUpperCase();
+            document.getElementById('priceDisplay').innerText = price.toLocaleString();
+            document.getElementById('btnPay').onclick = () => window.open(`https://app.pakasir.com/pay/${CONFIG.PAKASIR_SLUG}/${price}?order_id=${order.orderId}&qris_only=1`, '_blank');
+            switchStep(3);
+            timer = setInterval(checkStatus, 5000);
+        }
+
+        async function checkStatus() {
+            try {
+                let r = await fetch(`https://app.pakasir.com/api/check-status/${order.orderId}`);
+                let j = await r.json();
+                if(j.paid || j.status === 'success') { clearInterval(timer); createAcc(); }
+            } catch(e){}
+        }
+
+        async function createAcc() {
+            switchStep(4);
+            const pass = order.username + "2546";
+            try {
+                let u = await fetch(`${CONFIG.PANEL_DOMAIN}/api/application/users`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${CONFIG.PANEL_API_KEY}`, 'Accept': 'application/json' },
+                    body: JSON.stringify({ email: `${order.username}@gmail.com`, username: order.username, first_name: order.username, last_name: 'Cyber', language: 'en', password: pass })
+                });
+                let du = await u.json();
+                if(du.errors) throw new Error(du.errors[0].detail);
+
+                await fetch(`${CONFIG.PANEL_DOMAIN}/api/application/servers`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${CONFIG.PANEL_API_KEY}`, 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        name: `CYBER_NODE_${order.username.toUpperCase()}`, user: du.attributes.id, egg: CONFIG.EGG_ID,
+                        docker_image: "ghcr.io/parkervcp/yolks:nodejs_20", startup: "npm start",
+                        environment: { INST: "npm", USER_UPLOAD: "0", AUTO_UPDATE: "0", CMD_RUN: "npm start" },
+                        limits: { memory: order.ram === 'UNLIMITED' ? 0 : parseInt(order.ram) * 1024, swap: 0, disk: order.disk, io: 500, cpu: order.cpu },
+                        feature_limits: { databases: 5, backups: 5, allocations: 5 },
+                        deploy: { locations: [CONFIG.LOC_ID], dedicated_ip: false, port_range: [] }
+                    })
+                });
+
+                document.getElementById('resUser').innerText = order.username;
+                document.getElementById('resPass').innerText = pass;
+                document.getElementById('creatingText').classList.add('hidden');
+                document.getElementById('accBox').classList.remove('hidden');
+            } catch(e) { document.getElementById('creatingText').innerText = "FATAL_ERROR: " + e.message; }
+        }
+
+        function copy(id) {
+            const t = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(t);
+            alert("DATA_LINKED: " + t);
+        }
+        function backTo(n) { switchStep(n); }
+    </script>
+</body>
+</html>
